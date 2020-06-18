@@ -1,0 +1,37 @@
+{% extends "bootstrap/base.html" %}
+{% block title %}Layout{% endblock %}
+
+{% block navbar %}
+<div class="navbar navbar-fixed-top">
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="{{ url_for('profile') }}">Your Profile</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li><a href="{{ url_for('signin') }}">Sign In</a></li>
+        <li><a href="{{ url_for('searchforbook') }}">Find New Book</a></li>
+        <li><a href="{{ url_for('newUser') }}">Create New User</a></li>
+        <li><a href="{{ url_for('signout') }}">Sign Out</a></li>
+      </ul>
+    </div>
+  </nav>
+</div>
+<hr>
+<hr>
+<hr>
+
+
+{% endblock %}
+
+{% block styles %}
+{{super()}}
+<link rel="stylesheet"
+      href="{{url_for('.static', filename='mystyle.css')}}">
+{% endblock %}
+
+
+{% block content %}
+
+
+{% endblock %}

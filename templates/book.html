@@ -1,0 +1,47 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Book Details</h1>
+
+    <ul>
+        <li>Author: {{ book.author }}</li>
+        <li>Title: {{ book.title }}</li>
+        <li>ISBN: {{ book.isbn}} </li>
+        <li>ID: {{ book.id}} </li>
+    </ul>
+
+    <h2>Reviews</h2>
+    <ul>
+        {% for review in reviews %}
+            <li>
+                    {{ review.textofreview }} by User who has an ID {{ review.user_id }}
+                    who left a {{ review.rating }} star rating
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h2>Submit Reviews</h2>
+
+    <form action="/postreview" method="POST">
+      <div class="form-group">
+        <option value="{{ book.id }}">{{ book.title }} written by {{ book.author }}</option>
+        <label for="fname">Ratings (1 to 5):</label><br>
+        <input type="number" pattern="[1-5]" name="ratings"><br>
+        <textarea autocomplete="off" type="text" name="textofreview" rows="4" cols="30" style="width: 450px;">
+        </textarea>
+        <button type="submit" class="btn btn-primary">Submit Review</button>
+        <h3>{{ session["ERROR"] }}</h3>
+      </div>
+
+    </form>
+
+
+    <h2>Goodread Data</h2>
+
+    <li>Average Rating    : {{ content.books[0].average_rating }} </li>
+
+    <li>Number of Ratings : {{ content.books[0].work_ratings_count }} </li>
+
+
+
+{% endblock %}
